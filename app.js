@@ -21,10 +21,9 @@ var Blog = mongoose.model('Blog', blogSchema);
 
 // RESTFUL ROUTES
 
-app.get('/', (req, res) => {
-  res.redirect('/blogs');
-});
+app.get('/', (req, res) => res.redirect('/blogs'));
 
+// INDEX ROUTE
 app.get('/blogs', (req, res) => {
   Blog.find({}, (err, blogs) => {
     if(err){
@@ -35,6 +34,20 @@ app.get('/blogs', (req, res) => {
   });
 });
 
-app.listen(3000, process.env.IP, () => {
-  console.log('The server has started working!');
+//NEW ROUTE
+app.get('/blogs/new', (req, res) => res.render('new'));
+
+//CREATE ROUTE
+app.post('/blogs', (req, res) => {
+  // create blog
+  Blog.create(req.body.blog, (err, newBlog) => {
+    if(err) {
+      res.render('new');
+    } else {
+      // redirect
+      res.redirect('/blogs');
+    }
+  });
 });
+
+app.listen(3000, process.env.IP, () => console.log('The server has started working!'));
