@@ -15,7 +15,10 @@
       <label>Blog content</label>
       <textarea name="blog[body]" required><%= blog.body %></textarea>
     </div>
-    <input class="ui positive basic button" type="submit" value="SAVE">
+    <input class="ui left floated positive basic button" type="submit" value="SAVE">
+  </form>
+  <form class="ui form" id="delete_button" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+    <button class="ui right floated red button">DELETE</button>
   </form>
 </div>
 

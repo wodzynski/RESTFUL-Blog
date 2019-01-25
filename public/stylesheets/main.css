@@ -5,3 +5,7 @@ i.icon {
 body {
   margin-top: 6em;
 }
+
+#delete_button {
+  height: 1.5em;
+}
